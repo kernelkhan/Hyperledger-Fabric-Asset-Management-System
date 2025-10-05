@@ -39,18 +39,18 @@ The following script is designed to be run from a **single, clean terminal**. It
 **Open a terminal and paste the entire command block below.**
 
 
-# === STEP 1: FULL CLEANUP AND NETWORK RESTART ===
+#  STEP 1: FULL CLEANUP AND NETWORK RESTART 
 echo "--- Cleaning up Docker and starting fresh network ---"
 cd /mnt/d/Fabric/fabric-samples/test-network
 ./network.sh down
 docker system prune -af
 
-# === STEP 2: START NETWORK & DEPLOY CHAINCODE ===
+# STEP 2: START NETWORK & DEPLOY CHAINCODE 
 echo "--- Starting Fabric network and deploying chaincode ---"
 ./network.sh up createChannel -c mychannel -ca
 ./network.sh deployCC -ccn account -ccp ../asset-transfer-basic/chaincode-go -ccl go -i '{"function":"InitLedger","Args":[]}'
 
-# === STEP 3: PREPARE AND BUILD THE API SERVER ===
+#  STEP 3: PREPARE AND BUILD THE API SERVER 
 echo "--- Preparing and building the API server Docker image ---"
 cd /mnt/d/Fabric/fabric-api-server
 
@@ -67,7 +67,7 @@ go mod tidy
 echo "--- Building Docker image ---"
 docker build --no-cache -t fabric-api-server .
 
-# === STEP 4: RUN THE API SERVER ===
+#  STEP 4: RUN THE API SERVER 
 echo "---"
 echo "---"
 echo "--- BUILD SUCCESSFUL. STARTING API SERVER CONTAINER. ---"
